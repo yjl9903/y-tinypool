@@ -36,5 +36,9 @@
   },
   "engines": {
     "node": ">=v20.10.0"
+  },
+  "dependencies": {
+    "tinypool": "^2.1.0",
+    "yjs": "^13.6.29"
   }
 }

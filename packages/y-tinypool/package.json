@@ -1,8 +1,12 @@
 {
   "name": "y-tinypool",
   "version": "0.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "Execute Y.js in tinypool",
+  "keywords": [
+    "yjs",
+    "tinypool",
+    "worker_threads"
+  ],
   "homepage": "https://github.com/yjl9903/y-tinypool#readme",
   "bugs": {
     "url": "https://github.com/yjl9903/y-tinypool/issues"
@@ -34,11 +38,11 @@
     "test:ci": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
-  "engines": {
-    "node": ">=v20.10.0"
-  },
   "dependencies": {
     "tinypool": "^2.1.0",
     "yjs": "^13.6.29"
+  },
+  "engines": {
+    "node": ">=v20.10.0"
   }
 }

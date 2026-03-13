@@ -9,6 +9,7 @@ export interface SkipLog {
 export interface TaskRunOptions {
   skipInvalidUpdates?: boolean;
   timeout?: number;
+  transfer?: boolean;
 }
 
 export interface YTinypoolOptions {

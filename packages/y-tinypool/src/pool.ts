@@ -1,3 +1,5 @@
+import type { Transferable } from 'node:worker_threads';
+
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
@@ -25,6 +27,30 @@ function getErrorMessage(error: unknown): string {
     return error.message;
   }
   return String(error);
+}
+
+function buildTransferList(updates: unknown[]): Transferable[] {
+  const transferList: Transferable[] = [];
+  const seen = new Set<ArrayBuffer>();
+
+  for (const update of updates) {
+    if (!(update instanceof Uint8Array)) {
+      continue;
+    }
+
+    const buffer = update.buffer;
+    if (!(buffer instanceof ArrayBuffer)) {
+      continue;
+    }
+    if (seen.has(buffer)) {
+      continue;
+    }
+
+    seen.add(buffer);
+    transferList.push(buffer);
+  }
+
+  return transferList;
 }
 
 export class YTinypool {
@@ -117,6 +143,7 @@ export class YTinypool {
     }
 
     const timeout = options.timeout;
+    const transferList = options.transfer ? buildTransferList(task.updates) : undefined;
     const hasTimeout = typeof timeout === 'number' && Number.isFinite(timeout);
     const timeoutMs = hasTimeout ? timeout : undefined;
     const controller = hasTimeout ? new AbortController() : undefined;
@@ -133,10 +160,20 @@ export class YTinypool {
     }
 
     try {
-      const result = (await this.pool.run(
-        task,
-        controller ? { signal: controller.signal } : undefined
-      )) as WorkerResult;
+      const hasTransferList = Boolean(transferList && transferList.length > 0);
+      let runOptions: Parameters<Tinypool['run']>[1] | undefined;
+
+      if (controller || hasTransferList) {
+        runOptions = {};
+        if (controller) {
+          runOptions.signal = controller.signal;
+        }
+        if (hasTransferList) {
+          runOptions.transferList = transferList;
+        }
+      }
+
+      const result = (await this.pool.run(task, runOptions)) as WorkerResult;
       return result;
     } catch (error) {
       if (controller?.signal.aborted) {

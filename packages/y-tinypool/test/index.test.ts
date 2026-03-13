@@ -156,6 +156,24 @@ describe('YTinypool', () => {
     }
   });
 
+  it('transfers input updates when transfer is enabled', async () => {
+    const updates = makeIncrementalUpdates();
+    const pool = new YTinypool();
+
+    try {
+      const result = await pool.mergeUpdates(updates, { transfer: true });
+      expect(result.ok).toBe(true);
+      if (!result.ok) {
+        return;
+      }
+
+      expect(updates.every((update) => update.byteLength === 0)).toBe(true);
+      expect(result.update.byteLength).toBeGreaterThan(0);
+    } finally {
+      await pool.destroy();
+    }
+  });
+
   it('returns deterministic results under concurrent calls', async () => {
     const updates = makeIncrementalUpdates();
     const pool = new YTinypool();

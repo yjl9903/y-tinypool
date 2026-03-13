@@ -22,7 +22,7 @@ async function main() {
   const pool = new YTinypool({ skipInvalidUpdates: true });
 
   try {
-    const applyResult = await pool.applyUpdates(makeUpdatesWithInvalidOne());
+    const applyResult = await pool.applyUpdates(makeUpdatesWithInvalidOne(), { transfer: true });
     if (!applyResult.ok) {
       console.error('apply failed:', applyResult.error);
       return;

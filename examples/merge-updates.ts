@@ -23,7 +23,7 @@ async function main() {
 
   try {
     const updates = makeUpdates();
-    const result = await pool.mergeUpdates(updates);
+    const result = await pool.mergeUpdates(updates, { transfer: true });
 
     if (!result.ok) {
       console.error('merge failed:', result.error);

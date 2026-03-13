@@ -7,9 +7,10 @@ export interface SkipLog {
 }
 
 export interface TaskRunOptions {
-  skipInvalidUpdates?: boolean;
+  gc?: boolean;
   timeout?: number;
   transfer?: boolean;
+  skipInvalidUpdates?: boolean;
 }
 
 export interface YTinypoolOptions {
@@ -23,6 +24,7 @@ export interface YTinypoolOptions {
 export interface WorkerTask {
   op: WorkerOp;
   updates: unknown[];
+  gc: boolean;
   skipInvalidUpdates: boolean;
 }
 

@@ -91,6 +91,7 @@ export class YTinypool {
       {
         op: 'merge',
         updates,
+        gc: options.gc ?? true,
         skipInvalidUpdates: options.skipInvalidUpdates ?? this.defaultSkipInvalidUpdates
       },
       options
@@ -108,6 +109,7 @@ export class YTinypool {
       {
         op: 'apply',
         updates,
+        gc: options.gc ?? true,
         skipInvalidUpdates: options.skipInvalidUpdates ?? this.defaultSkipInvalidUpdates
       },
       options

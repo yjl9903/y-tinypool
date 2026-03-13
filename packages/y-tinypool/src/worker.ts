@@ -22,6 +22,7 @@ export default function run(task: WorkerTask): WorkerResult {
   }
 
   const updates = Array.isArray(task.updates) ? task.updates : [];
+  const gc = Boolean(task.gc);
   const skipInvalidUpdates = Boolean(task.skipInvalidUpdates);
   const skips: SkipLog[] = [];
 
@@ -90,6 +91,8 @@ export default function run(task: WorkerTask): WorkerResult {
 
   if (task.op === 'apply') {
     const doc = new Y.Doc();
+    doc.gc = gc;
+
     for (let index = 0; index < updates.length; index += 1) {
       const candidate = updates[index];
 

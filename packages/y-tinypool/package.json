@@ -1,6 +1,6 @@
 {
   "name": "y-tinypool",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Execute Y.js in tinypool",
   "keywords": [
     "yjs",

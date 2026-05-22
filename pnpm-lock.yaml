@@ -13,13 +13,13 @@ importers:
         version: 24.12.2
       bumpp:
         specifier: latest
-        version: 11.0.1
+        version: 11.1.0
       prettier:
         specifier: ^3.8.3
         version: 3.8.3
       tsdown:
         specifier: ^0.21.10
-        version: 0.21.10(typescript@5.9.3)
+        version: 0.21.10(typescript@6.0.3)
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -27,8 +27,8 @@ importers:
         specifier: ^2.9.9
         version: 2.9.9
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: ^6.0.3
+        version: 6.0.3
       vite:
         specifier: ^8.0.11
         version: 8.0.11(@types/node@24.12.2)(esbuild@0.27.7)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.4)
@@ -555,8 +555,8 @@ packages:
   birpc@4.0.0:
     resolution: {integrity: sha512-LShSxJP0KTmd101b6DRyGBj57LZxSDYWKitQNW/mi8GRMvZb078Uf9+pveax1DrVL89vm7mWe+TovdI/UDOuPw==}
 
-  bumpp@11.0.1:
-    resolution: {integrity: sha512-X0ti27I/ewsx/u0EJSyl0IZWWOE95q+wIpAG/60kc5gqMNR4a23YJdd3lL7JsBN11TgLbCM4KpfGMuFfdigb4g==}
+  bumpp@11.1.0:
+    resolution: {integrity: sha512-jdwOGMyX8JIqpQ0N2RMRR87DHZaoJnUtui5lU9LqFfFK5JC0H8qY9uWqXoa+dEWt/K7rOmmsoyiZB8RBM7RPBQ==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -873,8 +873,8 @@ packages:
     resolution: {integrity: sha512-3xfzXE/yTjhh0S5dIWlE+3E+J9A09REpLI1ZqVh2+HrNZoVzZn0pkvjiRgVK/Ev3PF9XnaTwCntTx+CADWXcyA==}
     hasBin: true
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1339,7 +1339,7 @@ snapshots:
 
   birpc@4.0.0: {}
 
-  bumpp@11.0.1:
+  bumpp@11.1.0:
     dependencies:
       args-tokenizer: 0.3.0
       cac: 7.0.0
@@ -1506,7 +1506,7 @@ snapshots:
 
   resolve-pkg-maps@1.0.0: {}
 
-  rolldown-plugin-dts@0.23.2(rolldown@1.0.0-rc.17)(typescript@5.9.3):
+  rolldown-plugin-dts@0.23.2(rolldown@1.0.0-rc.17)(typescript@6.0.3):
     dependencies:
       '@babel/generator': 8.0.0-rc.3
       '@babel/helper-validator-identifier': 8.0.0-rc.3
@@ -1520,7 +1520,7 @@ snapshots:
       picomatch: 4.0.4
       rolldown: 1.0.0-rc.17
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - oxc-resolver
 
@@ -1591,7 +1591,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  tsdown@0.21.10(typescript@5.9.3):
+  tsdown@0.21.10(typescript@6.0.3):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -1602,7 +1602,7 @@ snapshots:
       obug: 2.1.1
       picomatch: 4.0.4
       rolldown: 1.0.0-rc.17
-      rolldown-plugin-dts: 0.23.2(rolldown@1.0.0-rc.17)(typescript@5.9.3)
+      rolldown-plugin-dts: 0.23.2(rolldown@1.0.0-rc.17)(typescript@6.0.3)
       semver: 7.7.4
       tinyexec: 1.1.2
       tinyglobby: 0.2.16
@@ -1610,7 +1610,7 @@ snapshots:
       unconfig-core: 7.5.0
       unrun: 0.2.37
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - '@ts-macro/tsc'
       - '@typescript/native-preview'
@@ -1637,7 +1637,7 @@ snapshots:
       '@turbo/windows-64': 2.9.9
       '@turbo/windows-arm64': 2.9.9
 
-  typescript@5.9.3: {}
+  typescript@6.0.3: {}
 
   unconfig-core@7.5.0:
     dependencies:

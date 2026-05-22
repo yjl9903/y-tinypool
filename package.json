@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "bench": "turbo run bench",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write '**/*.{ts,js,mjs}'",

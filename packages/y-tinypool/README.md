@@ -53,7 +53,7 @@ import { YTinypool } from 'y-tinypool';
 const pool = new YTinypool({ skipInvalidUpdates: true });
 
 const updates: Uint8Array[] = [
-  Uint8Array.from([1, 2, 3]), // invalid sample
+  Uint8Array.from([1, 2, 3]) // invalid sample
   // ...valid updates
 ];
 
@@ -68,6 +68,39 @@ if (applied.ok) {
 
 await pool.destroy();
 ```
+
+## Benchmark
+
+```bash
+pnpm --filter y-tinypool bench
+```
+
+Local run on a MacBook Pro with Apple M3 Pro and 18GB memory. Node.js reported
+`availableParallelism=12` and `cpus=12`; the benchmark used a 4-worker `worker_threads`
+pool (`minThreads=4`, `maxThreads=4`, effective concurrency `4`):
+
+In the workload column, `tasks` is the number of independent Yjs jobs submitted together,
+and `updates` is the number of Yjs updates processed by each job.
+
+`mergeUpdates`:
+
+| Workload                  |      Main thread |       y-tinypool | Speedup | y-tinypool task throughput |
+| ------------------------- | ---------------: | ---------------: | ------: | -------------------------: |
+| `16 tasks x 256 updates`  | 115.33 batches/s | 278.85 batches/s |   2.42x |           4,461.60 tasks/s |
+| `16 tasks x 1024 updates` |   6.93 batches/s |  18.82 batches/s |   2.72x |             301.06 tasks/s |
+| `32 tasks x 4096 updates` |   0.23 batches/s |   0.88 batches/s |   3.75x |              28.05 tasks/s |
+
+`applyUpdates`:
+
+| Workload                  |      Main thread |       y-tinypool | Speedup | y-tinypool task throughput |
+| ------------------------- | ---------------: | ---------------: | ------: | -------------------------: |
+| `16 tasks x 256 updates`  | 144.31 batches/s | 397.63 batches/s |   2.76x |           6,362.08 tasks/s |
+| `16 tasks x 1024 updates` |  41.35 batches/s | 122.68 batches/s |   2.97x |           1,962.88 tasks/s |
+| `32 tasks x 4096 updates` |   5.07 batches/s |  15.81 batches/s |   3.12x |             505.97 tasks/s |
+
+Single-task Yjs operations are still faster on the main thread because worker handoff
+dominates. `y-tinypool` helps when many independent Yjs update jobs run concurrently; in
+this run, concurrent batches were about `2.4x` to `3.8x` faster.
 
 ## License
 

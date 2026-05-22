@@ -33,6 +33,7 @@
     "dist"
   ],
   "scripts": {
+    "bench": "vitest bench",
     "build": "tsdown",
     "test": "vitest",
     "test:ci": "vitest --run",

@@ -15,7 +15,8 @@
       ],
       "inputs": [
         "src/**/*.ts",
-        "test/**/*.ts"
+        "test/**/*.ts",
+        "bench/**/*.ts"
       ]
     },
     "test:ci": {
@@ -28,10 +29,21 @@
         "test/**/*.ts"
       ]
     },
+    "bench": {
+      "cache": false,
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "src/**/*.ts",
+        "bench/**/*.ts"
+      ]
+    },
     "format": {
       "inputs": [
         "src/**/*.ts",
-        "test/**/*.ts"
+        "test/**/*.ts",
+        "bench/**/*.ts"
       ]
     },
     "dev": {
